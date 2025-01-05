@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitGlam - Tutorials</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <style>
+        .tutorials-container {
+            background: linear-gradient(135deg, #FDD5DE 0%, #FFFAFA 100%);
+            min-height: 100vh;
+            padding: 80px 20px;
+        }
+
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .tutorial-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(253, 213, 222, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tutorial-video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .tutorial-content {
+            padding: 20px;
+        }
+
+        .tutorial-title {
+            font-size: 1.2rem;
+            color: #1D2D44;
+            margin-bottom: 10px;
+        }
+
+        .tutorial-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #1D2D44;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .page-description {
+            text-align: center;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <a href="./index.html" class="logo">
+                <img src="./images/fitglam.png" alt="FITGLAM" style="height: 40px;">
+            </a>
+            <div class="nav-links">
+                <a href="./index.html" class="nav-item">Accueil</a>
+                <a href="./index.html#first-section" class="nav-item">Nos Services</a>
+                <a href="./shop.html" class="nav-item">Shop</a>
+                <a href="./tutorials.html" class="nav-item active">Tutorials</a>
+            </div>
+            <div class="nav-buttons">
+                <button class="cart-button" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Tutorials Section -->
+        <div class="tutorials-container">
+            <h1 class="page-title">FitGlam Tutorials</h1>
+            <p class="page-description">
+                Discover our collection of expert-led tutorials designed to help you master boxing and Pilates techniques. 
+                Whether you're a beginner or advanced practitioner, our videos will guide you through each movement with precision and care.
+            </p>
+
+            <div class="tutorials-grid">
+                <!-- Tutorial Card 1 -->
+                <div class="tutorial-card">
+                    <video class="tutorial-video" controls>
+                        <source src="videos/video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="tutorial-content">
+                        <h3 class="tutorial-title">Basic Boxing Techniques</h3>
+                        <p class="tutorial-description">
+                            Learn the fundamental boxing moves and proper form for maximum effectiveness and safety.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tutorial Card 2 -->
+                <div class="tutorial-card">
+                    <video class="tutorial-video" controls>
+                        <source src="videos/video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="tutorial-content">
+                        <h3 class="tutorial-title">Pilates Core Workout</h3>
+                        <p class="tutorial-description">
+                            Strengthen your core with this comprehensive Pilates routine designed for all levels.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tutorial Card 3 -->
+                <div class="tutorial-card">
+                    <video class="tutorial-video" controls>
+                        <source src="videos/video3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="tutorial-content">
+                        <h3 class="tutorial-title">Advanced Combinations</h3>
+                        <p class="tutorial-description">
+                            Take your training to the next level with these advanced boxing and Pilates combinations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Modal -->
+        <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Shopping Cart</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="cartItems"></div>
+                        <div class="cart-total">
+                            <h5>Total: $<span id="cartTotal">0</span></h5>
+                        </div>
+                        <form id="checkoutForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="customerName" placeholder="Full Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="customerEmail" placeholder="Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="customerAddress" placeholder="Address" required>
+                            </div>
+                            <button type="submit" class="btn-checkout">Checkout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Copyright -->
+        <footer class="footer">
+            <div class="copyright">
+                2024 FitGlam. Designed by Ayamoudatir. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script src="./assets/js/shop.js"></script>
+</body>
+</html>
